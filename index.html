@@ -56,19 +56,18 @@
               <li><a href="https://techieslab.github.io/year-prediction_instructions/" target="_blank">En 2020 je serai...</a></li>
               <li><a href="https://techieslab.github.io/rainbow_instructions/" target="_blank">Ça va bien aller</a></li>
             </ol>
-
           </div>
         </div>
       </div>
       <div class="card">
         <div class="card-header" id="headingTwo">
           <h2 class="mb-0">
-            <button class="btn btn-link done task" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <button class="btn btn-link task" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
               Etape 2 - Connexion à P5.js
             </button>
           </h2>
         </div>
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
           <div class="card-body">
             <p>Première chose avant de commencer à travailler sur n'importe quel projet p5.js: <strong>connecte-toi <a href="https://editor.p5js.org/" target="_blank">à ton compte</a></strong> en cliquant sur "Log in".</p>
             <img src="images/log_in.png" class="img-shadow mb-3" alt="">
@@ -81,7 +80,6 @@
                 Ça semble bête à dire... mais n'oublie pas de te connecter à ton compte avant de commencer à travailler! Cela te permettra de sauvegarder gratuitement ton travail (tes <em>sketchs</em>) sur les serveurs de p5.js. Si tu ne le fais pas, tu dois alors télécharger les fichers localement (sur ton ordinateur) et s'il arrive quoique ce soit, tu risques de perdre tout ton travail 😢
               </p>
             </div>
-
           </div>
         </div>
       </div>
@@ -137,6 +135,19 @@
           <div class="collapse mb-3" id="collapseHint1">
             <div class="card card-body">
               <p>En anglais, le mot "ligne" se dit <em>line</em>...</p>
+            </div>
+          </div>
+
+          <p>
+            <a class="btn btn-danger" data-toggle="collapse" href="#collapseAnswer2" role="button" aria-expanded="false" aria-controls="collapseAnswer2">Réponse</a>
+          </p>
+          <div class="collapse mb-3" id="collapseAnswer2">
+            <div class="card card-body">
+              <p>Il s'agit de la fonction  <a href="https://p5js.org/reference/#/p5/line"><code class="language-js">line()</code></a>. Cette fonction prend 4 paramètres (4 valeurs séparées par une virgule, entre les deux parenthèses qui suivent le nom de la fonction):</p>
+              <pre><code class="language-js">line(x1, y1, x2, y2)</code></pre>
+              <p>Pour savoir quelles valeurs vont remplacer les paramètres <code class="language-js">x1</code>, <code class="language-js">y1</code>, etc. il faut comprendre que la fonction prend les coordonnées de deux points (le point <span style="color: rgb(30, 119, 200);"><strong>bleu</strong></span> et le point <span style="color: rgb(200, 29, 38);"><strong>rouge</strong></span>) sur le canevas et tire un train entre ces deux points.</p>
+
+              <img class="flexgif img-shadow" src="images/line_function.png" alt="">
             </div>
           </div>
 
@@ -241,14 +252,30 @@
       <div class="card-header" id="headingFive">
         <h2 class="mb-0">
           <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-            Etape 5 - Affiche les ballons plus lentement
+            Etape 5 - Affiche le ballon plus lentement
           </button>
         </h2>
       </div>
       <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
         <div class="card-body">
 
-          <p>Inspire de toi de l'étape 9 du défi <a href="https://techieslab.github.io/year-prediction_instructions/">des prédictions</a> pour arriver à ralentir le mouvement du ballon.</p>
+          <p>Inspire de toi de l'étape 9 du défi <a target="_blank" href="https://techieslab.github.io/year-prediction_instructions">des prédictions</a> pour arriver à ralentir le mouvement du ballon.</p>
+
+          <p>
+              <a class="btn btn-danger" data-toggle="collapse" href="#collapseAnswer3" role="button" aria-expanded="false" aria-controls="collapseAnswer3">Réponse</a>
+            </p>
+            <div class="collapse mb-3" id="collapseAnswer3">
+              <div class="card card-body">
+                <p>Dans la fonction <code class="language-js">setup()</code>, utilise la fonction <code class="language-js">frameRate()</code> pour diminuer le nombre de fois que la fonction <code class="language-js">draw()</code> sera appellée par seconde:</p>
+                <pre><code class="language-js">
+                  function setup() {
+                    createCanvas(400, 400);
+                    frameRate(5);
+                }
+              </code></pre>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -257,7 +284,6 @@
         <h2 class="mb-0">
           <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
             Etape 6 - Rends ton ballon plus réaliste
-            <span class="badge badge-dark">Optionnel</span>
           </button>
         </h2>
       </div>
@@ -266,7 +292,11 @@
 
           <p>Notre code de base fonctionne, alors on peut s'amuser à le rendre plus sophistiqué. Ce qui serait chouette, c'est de travailler sur l'apparence du ballon pour qu'il ait une forme plus réaliste.</p>
           <img class="img-shadow mb-3" src="images/ellipse_balloon.png" alt="">
-          <p>À la place d'utiliser un cercle, tu peux utiliser une ellipse. Consulte la <a href="https://p5js.org/reference/#/p5/ellipse">documentation de p5.js</a> pour dessiner des ellipses.</p>
+          <p>Avant de commencer ton travail sur la forme du ballon, je te conseille d'immobiliser ton ballon. Au lieu d'avoir une position X aléatoire, tu peux lui donner une valeur fixe en enlevant la fonction <code class="language-js">random()</code>:</p>
+          <pre><code class="language-js">
+            let positionX = 200;
+          </code></pre>
+          <p>Maintenant que ton ballon est immobilisé, à la place d'utiliser un cercle, tu peux utiliser une ellipse. Consulte la <a href="https://p5js.org/reference/#/p5/ellipse">documentation de p5.js</a> pour dessiner des ellipses.</p>
 
           <p>L'idée, c'est d'utiliser deux ellipses: une pour le ballon lui-même, et l'autre (toute petite) pour son noeud.</p>
 
@@ -274,7 +304,6 @@
           <ul>
             <li>Pour enlever le contour noir du ballon, il faut utiliser la fonction <code class="language-js">noStroke()</code></li>
             <li>Si tu utilises la fonction <code class="language-js">noStroke()</code> ta tige va probablement disparaître. Tu peux faire apparaître la tige avec la fonction <code class="language-js">stroke()</code></li>
-            <li>Pour faire bouger le ballon verticalment, il faudra aussi donner une valeur aléatoire (au hasard) à la position en Y du ballon. Pour cela tu auras sans doute besoin d'une seconde variable.</li>
           </ul>
         </div>
       </div>
@@ -284,7 +313,6 @@
         <h2 class="mb-0">
           <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
             Etape 7 - Couleur aléatoire
-            <span class="badge badge-dark">Optionnel</span>
             <span class="badge badge-warning">Difficile 🏆</span>
           </button>
         </h2>
@@ -293,9 +321,200 @@
         <div class="card-body">
 
           <p>Comment faire pour que le ballon alterne au hasard entre trois couleurs (rouge, bleu et vert, par exemple)?</p>
+          <p>C'est la fonction <code class="language-js">fill()</code> qui donne la couleur des ellipses qu'on a utilisées pour créer notre ballon. Entre les parenthèses de la fonction <code class="language-js">fill()</code>, on peut mettre une <em>string</em>, c'est-à-dire le nom de la couleur en anglais:</p>
+
+          <img class="img-shadow mb-3" src="images/html_colors.png" alt="">
+
+          <p>Si tu te demandes où j'ai pêché les couleurs <em>peachpuff</em> et <em>seagreen</em>, ce <a href="https://htmlcolorcodes.com/fr/noms-de-couleur/" target="_blank">site web</a> va t'intéresser 🎨🖌️</p>
+
+          <p>Une fois que tu as choisi quelques couleurs que tu aimes, il faut les stocker dans la mémoire de ton programme p5.js. Quelle est la chose qu'on utilise <em>toujours</em> en programmation pour stocker des données?</p>
+
+          <p>
+            <a class="btn btn-danger" data-toggle="collapse" href="#collapseAnswer4" role="button" aria-expanded="false" aria-controls="collapseAnswer4">Réponse</a>
+          </p>
+          <div class="collapse mb-3" id="collapseAnswer4">
+            <div class="card card-body">
+              <p>Une <strong>variable</strong> par Toutatis! Et pour stocker plusieurs informations dans une variable, le mieux c'est d'utiliser un tableau (<em>array</em> en anglais):</p>
+              <pre><code class="language-js">
+                let colors = ["yellow", "peachpuff", "seagreen"];
+              </code></pre>
+
+              <p>Pour aller chercher une couleur au hasard dans cette liste, tu peux utiliser notre bonne vieille méthode <code class="language-js">random()</code>:</p>
+
+              <pre><code class="language-js">
+                let colors = ["yellow", "peachpuff", "seagreen"];
+                fill(random(colors));
+
+                // l'ancien code pour choisir tout le temps la couleur rouge:
+                // fill("red");
+
+                ellipse(200, 200, 65, 80);
+
+                // ...
+              </code></pre>
+
+            </div>
+          </div>
+
+          <img src="images/diff_colors_balloon_stem.gif" alt="" class="img-shadow mb-3">
+
+          <p>Si ton ballon et le noeud ont des couleurs différentes, c'est sans doute que tu as utilisé deux fois <code class="language-js">random(colors)</code> dans la fonction <code class="language-js">draw()</code>. Pas une bonne idée! </p>
+
+          <p>Pour contourner le problème, tu vas devoir utiliser une nouvelle variable qui stockera la couleur au hasard:</p>
+
+          <pre><code class="language-js">
+            // la liste de toutes les couleurs
+            let colors = ["yellow", "peachpuff", "seagreen"];
+
+            // la variable que je vais utiliser par la suite pour stocker la couleur "au hasard"
+            // Ne nomme pas cette variable "color". C'est le nom d'une fonction en p5.js
+            let balloonColor;
+
+            function setup() {
+              createCanvas(400, 400);
+              frameRate(5);
+
+              // on choisit au hasard la couleur du ballon et on la stocke dans la variable qu'on avait déclaré plus haut
+              balloonColor = random(colors);
+
+              //...
+            }
+
+            function draw() {
+              background(220);
+              fill(balloonColor);
+              ellipse(200, 200, 65, 80);
+              //...
+            }
+          </code></pre>
         </div>
       </div>
     </div>
+    <div class="card">
+      <div class="card-header" id="headingEight">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+            Etape 8 - Notre ballon s'envole 🎈
+          </button>
+        </h2>
+      </div>
+      <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
+        <div class="card-body">
+
+          <p>Au lieu de faire apparaître notre ballon à différents endroits de notre canevas, on va le faire bouger du <strong>bas</strong> du canevas vers le <strong>haut</strong>. Pour cela il faut que la position du ballon sur l'axe des Y change! À chaque fois que la fonction <code class="language-js">draw()</code> est appelée, la position en Y doit avoir... diminué ou augmenté?🤔</p>
+
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint2" role="button" aria-expanded="false" aria-controls="collapseHint2">Indice</a>
+          </p>
+          <div class="collapse mb-3" id="collapseHint2">
+            <div class="card card-body">
+              <p>Diminué... vu que l'origine de ton canvas et en haut à gauche. La position en Y va commencer à 200, puis 199, 198...</p>
+            </div>
+          </div>
+
+
+          <p>À l'étape 4, on avait stocké la vaeur de la position en X dans une <strong>variable</strong> <code class="language-js">positionX</code>. Cette fois-ci, on va stocker la valeur de la position en Y dans une variable réutilisable:</p>
+
+          <pre><code class="language-js">
+            fonction draw() {
+              // plein de beau code...
+
+              let positionY= 200;
+              ellipse(200, positionY, 65, 80);
+
+              // plein de beau code...
+            }
+          </code></pre>
+
+          <p>Maintenant, diminuons la valeur de cette variable. Pour augmenter la valeur d'une variable de 1, on peut écrire ceci: <code class="language-js">positionY++</code> ou ceci: <code class="language-js">positionY += 1</code>. À ton avis, comment faire pour diminuer la valeur?</p>
+
+          <p>Lance ton code pour tester... Notre ballon reste en place 😢. Même problème que pour les couleurs aléatoires de l'étape précédente! On ne peut pas déclarer ta variable <code class="language-js">positionY</code> dans la fonction <code class="language-js">draw()</code>, car cette dernière est appellée plusieurs fois par seconde. Et donc plusieurs fois par seconde, on replace le ballon à sa position verticale initiale (200).</p>
+
+          <pre><code class="language-js">
+            let positionY= 200;
+
+            fonction setup() {
+              // plein de beau code...
+            }
+
+            fonction draw() {
+              // plein de beau code...
+
+              ellipse(200, positionY, 65, 80);
+
+              // plein de beau code...
+
+              positionY--
+            }
+          </code></pre>
+
+          <p>Tu as sans doute noté qu'il va falloir également modifier le code de la tige du ballon pour qu'elle suive... C'est là où utiliser des variables s'avère très utile!</p>
+        </div>
+      </div>
+    </div><!--  end card -->
+
+    <div class="card">
+      <div class="card-header" id="headingNine">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+            Etape 9 - Déclencher une action quand on clique 🖱️
+          </button>
+        </h2>
+      </div>
+      <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
+        <div class="card-body">
+
+          <p>Au lieu de faire apparaître notre ballon à différents endroits de notre canevas, on va le faire bouger du <strong>bas</strong> du canevas vers le <strong>haut</strong>. Pour cela il faut que la position du ballon sur l'axe des Y change! À chaque fois que la fonction <code class="language-js">draw()</code> est appelée, la position en Y doit avoir... diminué ou augmenté?🤔</p>
+
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint2" role="button" aria-expanded="false" aria-controls="collapseHint2">Indice</a>
+          </p>
+          <div class="collapse mb-3" id="collapseHint2">
+            <div class="card card-body">
+              <p>Diminué... vu que l'origine de ton canvas et en haut à gauche. La position en Y va commencer à 200, puis 199, 198...</p>
+            </div>
+          </div>
+
+
+          <p>À l'étape 4, on avait stocké la vaeur de la position en X dans une <strong>variable</strong> <code class="language-js">positionX</code>. Cette fois-ci, on va stocker la valeur de la position en Y dans une variable réutilisable:</p>
+
+          <pre><code class="language-js">
+            fonction draw() {
+              // plein de beau code...
+
+              let positionY= 200;
+              ellipse(200, positionY, 65, 80);
+
+              // plein de beau code...
+            }
+          </code></pre>
+
+          <p>Maintenant, diminuons la valeur de cette variable. Pour augmenter la valeur d'une variable de 1, on peut écrire ceci: <code class="language-js">positionY++</code> ou ceci: <code class="language-js">positionY += 1</code>. À ton avis, comment faire pour diminuer la valeur?</p>
+
+          <p>Lance ton code pour tester... Notre ballon reste en place 😢. Même problème que pour les couleurs aléatoires de l'étape précédente! On ne peut pas déclarer ta variable <code class="language-js">positionY</code> dans la fonction <code class="language-js">draw()</code>, car cette dernière est appellée plusieurs fois par seconde. Et donc plusieurs fois par seconde, on replace le ballon à sa position verticale initiale (200).</p>
+
+          <pre><code class="language-js">
+            let positionY= 200;
+
+            fonction setup() {
+              // plein de beau code...
+            }
+
+            fonction draw() {
+              // plein de beau code...
+
+              ellipse(200, positionY, 65, 80);
+
+              // plein de beau code...
+
+              positionY--
+            }
+          </code></pre>
+
+          <p>Tu as sans doute noté qu'il va falloir également modifier le code de la tige du ballon pour qu'elle suive... C'est là où utiliser des variables s'avère très utile!</p>
+        </div>
+      </div>
+    </div><!--  end card -->
 
   </div>
 </div>

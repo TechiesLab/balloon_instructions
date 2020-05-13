@@ -448,7 +448,11 @@
             }
           </code></pre>
 
-          <p>Tu as sans doute noté qu'il va falloir également modifier le code de la tige du ballon pour qu'elle suive... C'est là où utiliser des variables s'avère très utile!</p>
+          <p>Tu as sans doute noté qu'il va falloir également modifier le code de la tige du ballon pour qu'elle suive... C'est là où utiliser des variables s'avère très utile!C'est là où utiliser des variables s'avère très utile! Il se peut aussi que ton ballon s'envole très très lentement...</p>
+
+          <img src="images/slow_rise.gif" alt="" class="img-shadow mb-3">
+
+          <p>C'est que tu as un <code class="language-js">frameRate()</code> très bas. À vrai dire, tu peux maintenant enlever complètement cette instruction de ta fonction <code class="language-js">setup()</code>.</p>
         </div>
       </div>
     </div><!--  end card -->
@@ -463,57 +467,119 @@
       </div>
       <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
         <div class="card-body">
+          <p>Maintenant que notre ballon s'envole, essayons de voir comment le... péter 💪 La première chose à apprendre, c'est comment faire pour que l'ordinateur réagisse quand on clique sur le canevas. La librairie p5.js est très utile pour ça, car elle a plein de fonctions qui servent à détecter les actions de l'utilisateur sur son écran.</p>
 
-          <p>Au lieu de faire apparaître notre ballon à différents endroits de notre canevas, on va le faire bouger du <strong>bas</strong> du canevas vers le <strong>haut</strong>. Pour cela il faut que la position du ballon sur l'axe des Y change! À chaque fois que la fonction <code class="language-js">draw()</code> est appelée, la position en Y doit avoir... diminué ou augmenté?🤔</p>
+          <p>La fonction qu'on va utiliser s'appelle <a href="https://p5js.org/reference/#/p5.Element/mouseClicked"><code class="language-js">mouseClicked</code></a> (<em>souris cliquée</em>).</p>
+
+          <p>On va utiliser la fonction <code class="language-js">mouseClicked</code> <strong>après</strong> les fonctions <code class="language-js">setup()</code> et <code class="language-js">draw()</code>. La première instruction qu'on va mettre dans la fonction <code class="language-js">mouseClicked</code>, c'est une instruction pour afficher quelque chose dans la console (l'espace en-dessous de ton code).</p>
+
+          <img src="images/clicked.gif" alt="" class="img-shadow mb-3">
+
+          <p>Chaque fois que tu cliques sur le canevas, tu vois le mot "cliqué!" apparaître dans la console. Bien sûr, notre but n'est pas d'afficher un message dans notre console mais plutôt de faire "disparaître" notre ballon.</p>
+
+          <p>On ne va pas effacer le ballon. On va en donner l'illusion! En fait, on va repositionner le ballon en bas du canevas et on va changer sa couleur. Ni vu ni connu!</p>
+
+          <p>À ton avis, que faut-il coder dans la fonction <code class="language-js">mouseClicked()</code> pour changer la position et la couleur du ballon?</p>
 
           <p>
-            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint2" role="button" aria-expanded="false" aria-controls="collapseHint2">Indice</a>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint9" role="button" aria-expanded="false" aria-controls="collapseHint9">Indice</a>
           </p>
-          <div class="collapse mb-3" id="collapseHint2">
+          <div class="collapse mb-3" id="collapseHint9">
             <div class="card card-body">
-              <p>Diminué... vu que l'origine de ton canvas et en haut à gauche. La position en Y va commencer à 200, puis 199, 198...</p>
+              <pre>
+                <code class="language-js">
+                function mouseClicked() {
+                  // pour choisir une nouvelle couleur
+                  balloonColor = random(colors);
+
+                  // pour replacer le ballon au bas du canevas
+                  positionY = ???;
+                }
+                </code>
+              </pre>
+
+              <p>Remplace les <strong>???</strong> de mon code par la valeur en Y qui te permettra de positionner ton ballon en bas du canevas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!--  end card -->
+
+    <div class="card">
+      <div class="card-header" id="headingTen">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+            Etape 10 - Clique sur le ballon
+          </button>
+        </h2>
+      </div>
+      <div id="collapseTen" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
+        <div class="card-body">
+          <p>Dès qu'on clique <strong>n'importe où</strong> sur notre canevas, le ballon retourne au bas du canevas. Sympa... mais le ballon ne devrait faire cela que lorsqu'on clique sur celui-ci!</p>
+
+          <p>C'est le temps de mettre une condition à notre retour au bas du canevas. La syntaxe d'une condition en JavaScript est la suivante:</p>
+
+          <pre><code class="language-js">
+            if (CONDITION) {
+              // CODE À EXÉCUTER
+            }
+          </code></pre>
+
+          <p>On connaît déjà que notre code à exécuter. C'est celui qu'on avait avant!</p>
+
+          <pre><code class="language-js">
+            function mouseClicked() {
+              if (CONDITION) {
+                // pour choisir une nouvelle couleur
+                balloonColor = random(colors);
+
+                // pour replacer le ballon au bas du canevas
+                positionY = 400;
+              }
+            }
+          </code></pre>
+
+          <p>Et maintenant, la condition! Comment exprimer en code "quand l'utilisateur clique le ballon"? Rappelle-toi que dans une animation (comme dans beaucoup de jeux vidéo), tout est une question de coordonnées. Du coup, on va vérifier la <em>distance</em> de notre souris par rapport au centre de notre ballon. Et bien entendu, il existe une chouette fonction p5.js pour calculer la distance entre deux points: <a href="https://p5js.org/reference/#/p5/dist"><code class="language-js">dist()</code></a></p>
+
+          <p>Observe les paramètres de la fonction. C'est un peu comme pour la fonction <code class="language-js">line()</code>, il y a 4 paramètres qui représentent les coordonnées des deux points dont on mesure la distance.</p>
+
+          <img class="flexgif img-shadow mb-3" src="images/dist_function.png" alt="">
+
+          <p>Notre premier point en <span style="color: rgb(30, 119, 200);"><strong>bleu</strong></span> est le centre du cercle (ou de l'ellipse) qui forme le ballon. Le second point en <span style="color: rgb(200, 29, 38);"><strong>rouge</strong></span> est l'endroit où le joueur a cliqué. Pour le point rouge, tu peux obtenir les coordonnées avec deux variables spéciales de p5.js appellées <code class="language-js">mouseX</code> et <code class="language-js">mouseY</code>.</p>
+
+          <p>Pour obtenir la distance, tu peux donc coder ceci: <code class="language-js">let d = dist(x1, y1, mouseX, mouseY);</code>  À toi de remplacer <code class="language-js">x1</code> et <code class="language-js">x2</code> par les variables appropriées!</p>
+
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint10" role="button" aria-expanded="false" aria-controls="collapseHint10">Indice</a>
+          </p>
+          <div class="collapse mb-3" id="collapseHint10">
+            <div class="card card-body">
+              <p>Pour la position en Y, tu as déjà une variable <code class="language-js">positionX</code>. Pourrais-tu également avoir une variable en X?</p>
             </div>
           </div>
 
+          <p>Maintenant, utilises <code class="language-js">console.log(d)</code> pour voir la distance s'afficher à chaque fois que tu cliques:</p>
 
-          <p>À l'étape 4, on avait stocké la vaeur de la position en X dans une <strong>variable</strong> <code class="language-js">positionX</code>. Cette fois-ci, on va stocker la valeur de la position en Y dans une variable réutilisable:</p>
+          <img class="flexgif img-shadow mb-3" src="images/dist_balloon.gif" alt="">
 
-          <pre><code class="language-js">
-            fonction draw() {
-              // plein de beau code...
+          <p>Combine maintenant la distance avec la condition:</p>
 
-              let positionY= 200;
-              ellipse(200, positionY, 65, 80);
+          <pre>
+            <code class="language-js">
+            function mouseClicked() {
+              let d = dist(positionX, positionY, mouseX, mouseY);
+              if (d ????) {
+                // pour choisir une nouvelle couleur
+                balloonColor = random(colors);
 
-              // plein de beau code...
+                // pour replacer le ballon au bas du canevas
+                positionY = 400;
+              }
             }
-          </code></pre>
+            </code>
+          </pre>
 
-          <p>Maintenant, diminuons la valeur de cette variable. Pour augmenter la valeur d'une variable de 1, on peut écrire ceci: <code class="language-js">positionY++</code> ou ceci: <code class="language-js">positionY += 1</code>. À ton avis, comment faire pour diminuer la valeur?</p>
-
-          <p>Lance ton code pour tester... Notre ballon reste en place 😢. Même problème que pour les couleurs aléatoires de l'étape précédente! On ne peut pas déclarer ta variable <code class="language-js">positionY</code> dans la fonction <code class="language-js">draw()</code>, car cette dernière est appellée plusieurs fois par seconde. Et donc plusieurs fois par seconde, on replace le ballon à sa position verticale initiale (200).</p>
-
-          <pre><code class="language-js">
-            let positionY= 200;
-
-            fonction setup() {
-              // plein de beau code...
-            }
-
-            fonction draw() {
-              // plein de beau code...
-
-              ellipse(200, positionY, 65, 80);
-
-              // plein de beau code...
-
-              positionY--
-            }
-          </code></pre>
-
-          <p>Tu as sans doute noté qu'il va falloir également modifier le code de la tige du ballon pour qu'elle suive... C'est là où utiliser des variables s'avère très utile! Il se peut aussi que ton ballon s'envole très très lentement...</p>
-
-          <img src="images/slow_rise.gif" alt="" class="box-shadow">
+          <p>Remplace les ???? dans mon exemple et voilà, le tour est joué! Bravo!!!!</p>
         </div>
       </div>
     </div><!--  end card -->

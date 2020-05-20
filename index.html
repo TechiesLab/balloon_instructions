@@ -29,7 +29,7 @@
       <a class="btn btn-primary tl-button" href="#challenge" role="button">Commencer !</a>
     </div>
   </div>
-  <p id=english-link>For the english version click<a href="english_index.html"> here</a>!</p>
+  <p id=english-link>🗨️ For the english version click<a href="english_index.html"> here</a>!</p>
 
   <div class="container" id="challenge">
     <div class="gamification">
@@ -419,7 +419,7 @@
             fonction draw() {
               // plein de beau code...
 
-              let positionY= 200;
+              let positionY = 200;
               ellipse(200, positionY, 65, 80);
 
               // plein de beau code...
@@ -429,9 +429,12 @@
           <p>Maintenant, diminuons la valeur de cette variable. Pour augmenter la valeur d'une variable de 1, on peut écrire ceci: <code class="language-js">positionY++</code> ou ceci: <code class="language-js">positionY += 1</code>. À ton avis, comment faire pour diminuer la valeur?</p>
 
           <p>Lance ton code pour tester... Notre ballon reste en place 😢. Même problème que pour les couleurs aléatoires de l'étape précédente! On ne peut pas déclarer ta variable <code class="language-js">positionY</code> dans la fonction <code class="language-js">draw()</code>, car cette dernière est appellée plusieurs fois par seconde. Et donc plusieurs fois par seconde, on replace le ballon à sa position verticale initiale (200).</p>
+          <p>Pour contourner ce problème, on doit déclarer notre variable <code class="language-js">positionY</code> <em>avant</em> la fonction <code class="language-js">setup()</code>:</p>
 
           <pre><code class="language-js">
-            let positionY= 200;
+            let colors = ["yellow", "peachpuff", "seagreen"];
+            let balloonColor;
+            let positionY = 200;
 
             fonction setup() {
               // plein de beau code...
@@ -513,7 +516,7 @@
           </button>
         </h2>
       </div>
-      <div id="collapseTen" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
+      <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionExample">
         <div class="card-body">
           <p>Dès qu'on clique <strong>n'importe où</strong> sur notre canevas, le ballon retourne au bas du canevas. Sympa... mais le ballon ne devrait faire cela que lorsqu'on clique sur celui-ci!</p>
 
@@ -554,7 +557,7 @@
           </p>
           <div class="collapse mb-3" id="collapseHint10">
             <div class="card card-body">
-              <p>Pour la position en Y, tu as déjà une variable <code class="language-js">positionY</code>. Pourrais-tu également avoir une variable en X?</p>
+              <p>Pour la position en Y, tu as déjà une variable <code class="language-js">positionY</code>. Pourrais-tu également avoir une variable en X? Regarde à l'étape 8 comment on a fait pour déclarer la variable <code class="language-js">positionY</code></p>
             </div>
           </div>
 
@@ -578,11 +581,191 @@
             }
             </code>
           </pre>
-
           <p>Remplace les ???? dans mon exemple et voilà, le tour est joué! Bravo!!!!</p>
         </div>
       </div>
     </div><!--  end card -->
+
+    <div class="card">
+      <div class="card-header" id="headingEleven">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+            Etape 11 - Les points!
+          </button>
+        </h2>
+      </div>
+      <div id="collapseEleven" class="collapse" aria-labelledby="headingEleven" data-parent="#accordionExample">
+        <div class="card-body">
+          <p>Pour rendre notre jeu plus intéressant, rien de tel que des points! Chaque ballon éclaté rapportera des points au joueur. Comment pourrait-on coder cela? 🤔</p>
+
+          <p>Je vois trois étapes:</p>
+          <ol type="A">
+            <li>L'ordinateur doit se rappeler du nombre de points du joueur.</li>
+            <li>L'ordinateur doit afficher le nombre de points sur le canevas.</li>
+            <li>L'ordinateur doit augmenter le nombre de points dès que le joueur pète un ballon.</li>
+          </ol>
+
+          <h3>A. Stocker le nombre de points</h3>
+
+          <p>Commençons par la première étape. Qui dit "l'ordinateur se rappelle" ou "l'ordinateur stocke de l'information" dit bien entendu... <strong>variables</strong>!</p>
+
+          <p>Créons une variable, comme on l'a fait pour <code class="language-js">positionX</code>, <code class="language-js">positionY</code> ou encore <code class="language-js">colors</code>. À quel endroit de ton code dois-tu déclarer ta variable?</p>
+
+          <ol>
+            <li>Au tout début de ton programme, avant les fonctions <code class="language-js">setup()</code> et <code class="language-js">draw()</code>?</li>
+            <li>Dans la fonction <code class="language-js">setup()</code>?</li>
+            <li>Dans la fonction <code class="language-js">draw()</code>?</li>
+            <li>Dans la fonction <code class="language-js">mouseClicked()</code>?</li>
+          </ol>
+
+
+          <p>
+            <a class="btn btn-danger" data-toggle="collapse" href="#collapseAnswer11" role="button" aria-expanded="false" aria-controls="collapseAnswer11">Réponse</a>
+          </p>
+          <div class="collapse mb-3" id="collapseAnswer11">
+            <div class="card card-body">
+              <p>Réponse 2! Au tout début de ton programme, comme ceci:</p>
+              <pre>
+                <code class="language-js">
+                let colors = ["yellow", "peachpuff", "seagreen"];
+                let balloonColor;
+                let positionY = 200;
+                let positionX = 100;
+                let points = 0;
+                </code>
+              </pre>
+
+              <p>Si tu déclares ta variable <code class="language-js">points</code> dans la fonction <code class="language-js">setup()</code>, tu ne pourras pas y avoir accès dans la fonction <code class="language-js">draw()</code>.</p>
+              <p>Si tu déclares ta variable <code class="language-js">points</code> dans la fonction <code class="language-js">draw()</code>, tu n'arriveras jamais à faire augmenter le nombre de points, car la variable sera constamment ré-initialisée à 0.</p>
+              <p>Même chose si tu déclares ta variable dans la fonction <code class="language-js">mouseClicked()</code>: la variable sera ré-initialisée à 0 dès que tu cliqueras sur le ballon.</p>
+            </div>
+          </div>
+
+          <h3>B. Afficher les points</h3>
+
+          <p>Comment faire pour afficher du texte sur notre canevas? On l'a fait dans notre challenge <a href="https://techieslab.github.io/year-prediction_instructions/">prédictions</a>. Il y a une fonction très utile en p5.js... Te souviens-tu laquelle?</p>
+
+          <p>
+            <a class="btn btn-danger" data-toggle="collapse" href="#collapseAnswer11B" role="button" aria-expanded="false" aria-controls="collapseAnswer11B">Réponse</a>
+          </p>
+          <div class="collapse mb-3" id="collapseAnswer11B">
+            <div class="card card-body">
+              <p>C'est la fonction <code class="language-js">text()</code></p>
+            </div>
+          </div>
+
+          <p>Cette fois-ci, où devrait-on utiliser cette fonction?</p>
+
+          <ol>
+            <li>Au tout début de ton programme, avant les fonctions <code class="language-js">setup()</code> et <code class="language-js">draw()</code>?</li>
+            <li>Dans la fonction <code class="language-js">setup()</code>?</li>
+            <li>Dans la fonction <code class="language-js">draw()</code>?</li>
+            <li>Dans la fonction <code class="language-js">mouseClicked()</code>?</li>
+          </ol>
+
+          <p>
+            <a class="btn btn-danger" data-toggle="collapse" href="#collapseAnswer11C" role="button" aria-expanded="false" aria-controls="collapseAnswer11C">Réponse</a>
+          </p>
+          <div class="collapse mb-3" id="collapseAnswer11C">
+            <div class="card card-body">
+              <p>Dans la fonction <code class="language-js">draw()</code> car le nombre de points va évoluer au fil du jeu.</p>
+            </div>
+          </div>
+
+          <p>Comment faire en sorte que notre fonction affiche le nombre de points?</p>
+
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint11A" role="button" aria-expanded="false" aria-controls="collapseHint11A">Indice</a>
+          </p>
+          <div class="collapse mb-3" id="collapseHint11A">
+            <div class="card card-body">
+              <p>Tu pourrais utiliser la fonction <code class="language-js">text()</code> ainsi:</p>
+              <pre>
+                <code class="language-js">
+                text("points: 7", 10, 30);
+                </code>
+              </pre>
+
+            <p>Le problème, c'est que ton jeu afficherait toujours 7 points. Pas très utile. Par contre, si tu utilises une variable dans la fonction text, alors ça devient intéressant:</p>
+
+            <pre>
+              <code class="language-js">
+              let points = 7;
+
+              // les autres parties de ton code...
+
+              text("points: " + points, 10, 30);
+              </code>
+            </pre>
+
+            <p><code class="language-js">"points: " + points</code> ça veut dire qu'on colle le mot "points: " avec la <strong>valeur de la variable</strong> <code class="language-js">points</code>. Si dans la valeur vaut 5, alors on verra affiché "points: 5". Si la valeur vaut 34, alors on verra affiché "points: 34"</p>
+
+            </div>
+          </div>
+
+
+          <h3>C. Augmenter le nombre de points</h3>
+
+          <p>Pose-toi toujours la même question! Où dois-tu changer la valeur de la variable <code class="language-js">points</code>?</p>
+
+          <ol>
+            <li>Au tout début de ton programme, avant les fonctions <code class="language-js">setup()</code> et <code class="language-js">draw()</code>?</li>
+            <li>Dans la fonction <code class="language-js">setup()</code>?</li>
+            <li>Dans la fonction <code class="language-js">draw()</code>?</li>
+            <li>Dans la fonction <code class="language-js">mouseClicked()</code>?</li>
+          </ol>
+
+          <p>
+            <a class="btn btn-danger" data-toggle="collapse" href="#collapseAnswer11D" role="button" aria-expanded="false" aria-controls="collapseAnswer11D">Réponse</a>
+          </p>
+          <div class="collapse mb-3" id="collapseAnswer11D">
+            <div class="card card-body">
+              <p>Cette fois-ci, c'est dans la fonction <code class="language-js">mouseClicked()</code>! Les points n'augmentent que lorsque le joueur clique sur le ballon!</p>
+
+              <p>Ta fonction aura l'air de quelque chose comme ceci:</p>
+
+              <pre>
+                <code class="language-js">
+                function mouseClicked() {
+                  let d = dist(positionX, positionY, mouseX, mouseY);
+
+                  if (d < circleDiameter) {
+                    // changer la couleur du ballon
+                    balloonColor = random(colors);
+                    fill(balloonColor);
+
+                    // repositionner le ballon en bas de l'écran
+                    positionX = random(0, canvasWidth);
+                    positionY = height +circleDiameter/2;
+
+                    // augmenter les points
+                    points ????
+                  }
+                }
+                </code>
+              </pre>
+
+              <p>N'oublie pas de remplacer les <strong>????</strong> par le code approprié. Petit rappel, pour faire <em>diminuer</em> de 1 une variable, on peut écrire ceci: <code class="language-js">points--</code> ou <code class="language-js">points -= 1</code>.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div><!--  end card -->
+    <div class="card">
+      <div class="card-header" id="headingTwelve">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+            Etape 12 - Vite, vite, vite!
+          </button>
+        </h2>
+      </div>
+      <div id="collapseTwelve" class="collapse" aria-labelledby="headingTwelve" data-parent="#accordionExample">
+        <div class="card-body">
+          <p>Ajoutons un </p>
+        </div>
+      </div>
+    </div>  <!-- end of card -->
 
   </div>
 </div>

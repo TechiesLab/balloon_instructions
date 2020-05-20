@@ -790,9 +790,9 @@
             </code>
           </pre>
 
-          <p>Comme tu peux le constater, la fonction <code class="language-js">setInterval</code> prend deux <strong>arguments</strong>: <code class="language-js">rainbow</code> et <code class="language-js">2000</code>. Le premier argument, c'est le code à exécuter après chaque interval. Ici, c'est la fonction rainbow. Le second argument, c'est la longueur de l'intervale en <strong>millisecondes</strong>. 2000 millisecondes, c'est l'équivalent de... 2 secondes!</p>
+          <p>Comme tu peux le constater, la fonction <code class="language-js">setInterval</code> prend deux <strong>arguments</strong>: <code class="language-js">rainbow</code> et <code class="language-js">2000</code>. Le premier argument, qu'on appelle en langage technique <strong>callback</strong>, c'est le code à exécuter après chaque interval (ici, la fonction <code class="language-js">rainbow</code>). Le second argument, c'est la longueur de l'intervale en <strong>millisecondes</strong>. 2000 millisecondes, c'est l'équivalent de... 2 secondes!</p>
 
-          <p>En conséquence, l'ordinateur va exécuter la fonction <code class="language-js">rainbow</code> chaque 2 secondes.</p>
+          <p>En d'autres mots, l'ordinateur va exécuter la fonction <code class="language-js">rainbow</code> chaque 2 secondes.</p>
 
           <p>Dans la fonction <code class="language-js">setup()</code> de ton code, tu peux donc ajouter la ligne suivante:</p>
 
@@ -807,9 +807,69 @@
             </code>
           </pre>
 
-          <p>À toi de remplacer les <strong>????</strong> pour que la fonction subtractSecond se déclence toutes les secondes (pense à la valeur d'une seconde en millisecondes).</p>
+          <p>À toi de remplacer les <strong>????</strong> pour que la fonction <code class="language-js">subtractSecond</code> se déclenche toutes les secondes (pense à la valeur d'une seconde en millisecondes).</p>
 
+          <p>Étape suivante: coder la fonction <code class="language-js">subtractSecond()</code> qui veut dire en français "retranche une seconde". À la toute toute fin de ton programme (après la fonction <code class="language-js">mouseClicked()</code>, tu peux coder la fonction ainsi:</p>
 
+          <pre>
+            <code class="language-js">
+            function subtractSecond() {
+              // code pour soustraire une seconde
+            }
+            </code>
+          </pre>
+
+          <p>Peux-tu trouver le code de la fonction? Pense à comment tu as changé la valeur de la variable <code class="language-js">positionY</code> ou encore comment tu as additionné les points de ta variable <code class="language-js">points</code>.</p>
+
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint12A" role="button" aria-expanded="false" aria-controls="collapseHint12A">Indice</a>
+          </p>
+          <div class="collapse mb-3" id="collapseHint12A">
+            <div class="card card-body">
+              <p>Utilise <code class="language-js">console.log(timerValue);</code> pour t'assurer que le temps restant diminue. Comment faire pour que le temps restant n'aille pas dans le négatif? Peut-être qu'une <strong>condition</strong> pourrait aider...</p>
+            </div>
+          </div>
+
+          <p>Dernière étape: faire en sorte que le jeu s'arrête lorsqu'il ne reste plus de temps! Pour se faire, tu dois retourner dans la fonction <code class="language-js">draw()</code> et utiliser la fonction <code class="language-js">noLoop()</code> qui va avoir pour effet de cesser la répétition en boucle de la fonction <code class="language-js">draw()</code>:</p>
+          <pre>
+            <code class="language-js">
+            function draw() {
+              // code pour dessiner le ballon
+              // code pour que le ballon s'envole
+              // code pour afficher les points
+
+              if (????) {
+                noLoop(); // le jeu s'arrête
+              }
+            }
+            </code>
+          </pre>
+
+          <p>Dernier conseil: après avoir utilisé la fonction <code class="language-js">noLoop()</code>, tu peux encore montrer sur ton canevas le score final avec un message. Par exemple: "Tu as récolté 320 points, bravo!" ou "Tu n'as eu que 20 points, meilleure chance la prochaine fois".</p>
+
+        </div>
+      </div>
+    </div>  <!-- end of card -->
+
+    <div class="card">
+      <div class="card-header" id="headingThirteen">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen">
+            Etape 13 - Pour peaufiner le jeu
+          </button>
+        </h2>
+      </div>
+      <div id="collapseThirteen" class="collapse" aria-labelledby="headingThirteen" data-parent="#accordionExample">
+        <div class="card-body">
+          <p>Bravo de t'être rendu-e à la fin de ce défi!!!🏅</p>
+          <p>Voici quelques idées pour rendre ton jeu encore plus sympathique:</p>
+
+          <ul>
+            <li>Éviter que le ballon soit caché par les côtés latéraux du canevas, comme ceci:</li>
+            <img src="images/balloon-border.png" alt="" class="img-shadow mb-3">
+            <li>Avoir plus de 10 couleurs différentes pour le ballon.</li>
+            <li>Faire en sorte que le ballon s'envole de plus en plus vite.</li>
+          </ul>
         </div>
       </div>
     </div>  <!-- end of card -->
